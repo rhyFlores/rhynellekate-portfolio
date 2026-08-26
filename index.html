@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rhynelle Kate Flores — Frontend Developer</title>
+    <meta name="description"
+        content="Frontend developer based in Ozamiz, PH. BSIT grad, PhilNITS-certified, builds cute & careful interfaces.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"
+        integrity="sha384-K2R7AzsJQPCDnhTlIEZr5pifaODgyx7XqbqkZMtLKzGJNo/Irtg9yU85F+1YwL8X"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav>
+        <a class="logo" href="#top">
+            <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M2 15 Q5 3 10 10 T18 5" stroke="#FF6F59" stroke-width="2.5" fill="none"
+                    stroke-linecap="round" />
+            </svg>
+            kate.
+        </a>
+        <div class="navlinks">
+            <a href="#about">about</a>
+            <a href="#work">work</a>
+            <a href="#experience">experience</a>
+            <a href="#achievements">achievements</a>
+        </div>
+        <a class="hire"
+            href="https://mail.google.com/mail/?view=cm&to=rhynellekate22@gmail.com&su=Let's+Work+Together">say hi →</a>
+    </nav>
+
+    <div class="wrap" id="top">
+        <section class="hero">
+            <div class="reveal">
+                <div class="eyebrow"><span class="dot"></span> open to frontend roles · ozamiz city, ph</div>
+                <h1 class="headline">
+                    hi, i'm kate.<br>
+                    i build <span class="script">interfaces</span><br>
+                    <span class="underline">with a big heart
+                        <svg viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true">
+                            <path d="M2 10 Q40 2 80 9 T160 6 T198 10" stroke="#7C83FD" stroke-width="4" fill="none"
+                                stroke-linecap="round" />
+                        </svg>
+                    </span>.
+                </h1>
+                <p class="sub">Frontend dev &amp; BSIT grad from La Salle University–Ozamiz. I like clean code, tiny
+                    details, and interfaces that feel like someone actually made them. Go on, draw me something →</p>
+                <div class="cta-row">
+                    <a class="btn-primary" href="#work">see my work</a>
+                    <a class="btn-ghost" href="assets/RhynelleFlores_Resume.pdf">download resume</a>
+                </div>
+            </div>
+
+            <div class="drawpad-wrap reveal">
+                <div class="drawpad-label">
+                    <span>✎ draw something for me</span>
+                    <button class="clear-btn" id="clearBtn">clear</button>
+                </div>
+                <div id="drawCanvasHolder">
+                    <canvas id="drawCanvas" width="440" height="300" role="img"
+                        aria-label="Interactive drawing canvas">Your browser does not support the drawing canvas.</canvas>
+                </div>
+                <div class="drawpad-hint">it's just for fun — nothing is saved 🌸</div>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <div class="reveal">
+                <span class="section-tag">about me</span>
+                <h2 class="section-title">a dev who sketches before she codes</h2>
+                <p>I got into frontend because I liked making things people actually enjoy using, not just things that
+                    work. During my internship at ASV Business Solution, I helped built the annotation canvas for Cirqapture —
+                    the same kind of drawing tool you just played with — wired up a livestock dashboard for Farmyra, and
+                    restructure NoDiy into a proper monorepo.</p>
+                <p class="about-note">I hold a PhilNITS certification, have joined the regional HackForGov CTF twice, and
+                    always down to prototype something on a Friday night.</p>
+
+                <div class="stat-row">
+                    <div class="stat"><b>3 mo</b>internship</div>
+                    <div class="stat"><b>5</b>projects shipped</div>
+                    <div class="stat"><b>6</b>certifications</div>
+                </div>
+
+                <div class="jar-label">// frontend</div>
+                <div class="stickers">
+                    <span class="sticker s1">React</span>
+                    <span class="sticker s2">Angular</span>
+                    <span class="sticker s3">TypeScript</span>
+                    <span class="sticker s4">Tailwind CSS</span>
+                    <span class="sticker s1">Fabric.js</span>
+                    <span class="sticker s2">GSAP</span>
+                </div>
+                <div class="jar-label">// backend &amp; data</div>
+                <div class="stickers">
+                    <span class="sticker s3">NestJS</span>
+                    <span class="sticker s4">Laravel</span>
+                    <span class="sticker s1">MongoDB</span>
+                    <span class="sticker s2">MySQL</span>
+                    <span class="sticker s3">REST APIs</span>
+                </div>
+                <div class="jar-label">// tools</div>
+                <div class="stickers">
+                    <span class="sticker s4">Git</span>
+                    <span class="sticker s1">GitHub Actions</span>
+                    <span class="sticker s2">AWS S3</span>
+                    <span class="sticker s3">Figma</span>
+                    <span class="sticker s4">Power BI</span>
+                </div>
+            </div>
+            <div class="polaroid-stack reveal">
+                <div class="polaroid">
+                    <img src="assets/Images/profile.jpg" alt="Kate" loading="lazy">
+                    <div class="cap">that's me!</div>
+                </div>
+                <div class="polaroid">
+                    <img src="assets/Images/about3.jpg" alt="Kate at Hack4Gov" loading="lazy">
+                    <div class="cap">HackForGov</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="work">
+            <span class="section-tag reveal">selected work</span>
+            <h2 class="section-title reveal">things i've built</h2>
+            <div class="project-grid">
+
+                <div class="project-card featured reveal">
+                    <div class="thumb"><img
+                            src="assets/Images/project1.jpg"
+                            alt="Ramil's Creation EMS" loading="lazy"></div>
+                    <div class="project-body">
+                        <span class="project-tag">featured · capstone project</span>
+                        <h3>Ramil's Creation EMS</h3>
+                        <p>An events management web app — I led all frontend work with React and Tailwind CSS, with
+                            Laravel powering the backend API. Built with a 3-person team.</p>
+                        <div class="tag-row">
+                            <span class="tag-chip">React</span><span class="tag-chip">Laravel</span><span
+                                class="tag-chip">TypeScript</span><span class="tag-chip">Tailwind</span><span
+                                class="tag-chip">MySQL</span>
+                        </div>
+                        <div class="link-row">
+                            <a href="https://github.com/rhyFlores/Ramil-s-Creation-EMS" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                            <a href="assets/Images/project1-vid.mp4" data-video-trigger>View video ↗</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                        <div class="thumb"><img src="assets/Images/cirq1.png"
+                            alt="Cirqapture annotation system" loading="lazy"></div>
+                    <div class="project-body">
+                        <span class="project-tag">internship · ASV Business Solution</span>
+                        <h3>Cirqapture Annotation System</h3>
+                        <p>A screen-capture and annotation Chrome extension. I built the Fabric.js canvas integration,
+                            SVG export, PDF generation, and a real-time collaborator sharing workflow.</p>
+                        <div class="tag-row">
+                            <span class="tag-chip">Fabric.js</span><span class="tag-chip">Angular</span><span
+                                class="tag-chip">SVG</span><span class="tag-chip">PDF export</span>
+                        </div>
+                        <div class="link-row">
+                            <span class="disabled">Private repo — internal ASV product</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="thumb"><img
+                            src="assets/Images/katha1.png"
+                            alt="Katha Studio website" loading="lazy"></div>
+                    <div class="project-body">
+                        <span class="project-tag">client work</span>
+                        <h3>Katha Studio Website</h3>
+                        <p>A clean, responsive studio landing page designed and built end-to-end for a real client —
+                            strong visual hierarchy, modern interactions, deployed on Netlify.</p>
+                        <div class="tag-row">
+                            <span class="tag-chip">HTML</span><span class="tag-chip">CSS</span><span
+                                class="tag-chip">JavaScript</span><span class="tag-chip">Responsive</span>
+                        </div>
+                        <div class="link-row">
+                            <a href="https://kathastudios.netlify.app/" target="_blank" rel="noopener noreferrer">Live site ↗</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="thumb"><img
+                            src="assets/Images/project2.jpg"
+                            alt="Valorant fan website" loading="lazy"></div>
+                    <div class="project-body">
+                        <span class="project-tag">personal project</span>
+                        <h3>Valorant Fan Website</h3>
+                        <p>An interactive fan site with agent profiles and game data — an early, hands-on lesson in UI
+                            composition and JSON data handling with vanilla JS.</p>
+                        <div class="tag-row">
+                            <span class="tag-chip">HTML</span><span class="tag-chip">CSS</span><span
+                                class="tag-chip">JavaScript</span><span class="tag-chip">JSON</span>
+                        </div>
+                        <div class="link-row">
+                            <a href="https://github.com/rhyFlores/valorant" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                            <a href="https://rhyflores.github.io/valorant/" target="_blank" rel="noopener noreferrer">Live ↗</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="thumb"><img
+                            src="assets/Images/project3.jpg"
+                            alt="Booker POS system" loading="lazy"></div>
+                    <div class="project-body">
+                        <span class="project-tag">personal project</span>
+                        <h3>Booker POS System</h3>
+                        <p>A point-of-sale system with inventory tracking and sales processing — full-stack fundamentals
+                            built with plain PHP, MySQL, HTML, CSS, and JavaScript.</p>
+                        <div class="tag-row">
+                            <span class="tag-chip">PHP</span><span class="tag-chip">MySQL</span><span
+                                class="tag-chip">HTML</span><span class="tag-chip">CSS</span>
+                        </div>
+                        <div class="link-row">
+                            <a href="https://github.com/rhyFlores/POS_Project" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="experience">
+            <span class="section-tag reveal">where i've worked</span>
+            <h2 class="section-title reveal">experience</h2>
+            <div class="timeline">
+                <div class="tl-item reveal">
+                    <div class="tl-date">Feb 2026 — May 2026</div>
+                    <h3>Web Developer Intern</h3>
+                    <div class="org">ASV Business Solution · Mandaue City, Cebu</div>
+                    <ul>
+                        <li>Contributed to Cirqapture, a screen-capture and workflow documentation platform</li>
+                        <li>Built interactive canvas features using Fabric.js for annotation and markup</li>
+                        <li>Developed frontend components with React, Angular, TypeScript, and Tailwind CSS</li>
+                        <li>Set up GitHub Actions CI/CD pipelines for automated build and deployment</li>
+                        <li>Built PDF generation features using pdf-lib and html2canvas</li>
+                    </ul>
+                </div>
+                <div class="tl-item reveal">
+                    <div class="tl-date">Aug 2024 — May 2025</div>
+                    <h3>Frontend Developer (Capstone)</h3>
+                    <div class="org">La Salle University – Ozamiz · Academic Project</div>
+                    <ul>
+                        <li>Led all frontend development on Ramil's Creation EMS, a full-stack events management website
+                        </li>
+                        <li>Built a responsive UI with React and Tailwind CSS for event bookings, client records, and
+                            scheduling</li>
+                        <li>Integrated with a Laravel REST API and MySQL as part of a 3-person team</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements">
+            <span class="section-tag reveal">certifications &amp; recognition</span>
+            <h2 class="section-title reveal">achievements</h2>
+            <div class="badge-grid">
+                <div class="badge-card reveal">
+                    <span class="badge-icon">🎓</span>
+                    <h4>PhilNITS IP Exam Passer</h4>
+                    <p>Internationally recognized IT certification covering core IT concepts, systems, networks,
+                        databases, and information security.</p>
+                    <div class="badge-date">October 2025</div>
+                </div>
+                <div class="badge-card reveal">
+                    <span class="badge-icon">🚩</span>
+                    <h4>HackForGov CTF — Top 6 &amp; Top 5</h4>
+                    <p>DICT Region 10 Capture-The-Flag competition, Iligan City &amp; Cagayan de Oro City.</p>
+                    <div class="badge-date">Aug 2024 &amp; Nov 2025</div>
+                </div>
+                <div class="badge-card reveal">
+                    <span class="badge-icon">✏️</span>
+                    <h4>UI/UX Design Webinar</h4>
+                    <p>Usability testing and user-centered design, with Ms. Lucy Mae Tan.</p>
+                    <div class="badge-date">September 2025</div>
+                </div>
+                <div class="badge-card reveal">
+                    <span class="badge-icon">🌿</span>
+                    <h4>Git Version Control Webinar</h4>
+                    <p>Branching and collaborative workflows, with Mr. Zyndly Kent Baja.</p>
+                    <div class="badge-date">September 2025</div>
+                </div>
+                <div class="badge-card reveal">
+                    <span class="badge-icon">☁️</span>
+                    <h4>AWS Cloud Hybrid Webinar</h4>
+                    <p>AWS services and scalable web architecture, with Ms. Darla David.</p>
+                    <div class="badge-date">October 2025</div>
+                </div>
+                <div class="badge-card reveal">
+                    <span class="badge-icon">📊</span>
+                    <h4>Data Analytics — Power BI</h4>
+                    <p>Data visualization fundamentals, with Mr. Bonnie Jefferson Padilla.</p>
+                    <div class="badge-date">May 2025</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact reveal">
+            <span class="section-tag">let's talk</span>
+            <h2>let's build something<br>great together.</h2>
+            <p>I'm actively looking for frontend developer roles. If you've got a project, a team, or just want to say
+                hi — my inbox is open.</p>
+            <div class="contact-links">
+                <a class="sticker s1"
+                    href="https://mail.google.com/mail/?view=cm&to=rhynellekate22@gmail.com&su=Let's+Work+Together"
+                    target="_blank" rel="noopener noreferrer">email ↗</a>
+                <a class="sticker s2" href="https://github.com/rhyFlores" target="_blank" rel="noopener noreferrer">github ↗</a>
+                <a class="sticker s3" href="https://www.linkedin.com/in/rhynelle-kate-flores-5b20a32b4/"
+                    target="_blank" rel="noopener noreferrer">linkedin ↗</a>
+                <a class="sticker s4" href="assets/RhynelleFlores_Resume.pdf" target="_blank" rel="noopener noreferrer">resume ↗</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        © Rhynelle Kate Flores — built with <span class="heart">♥</span> and a little too much iced coffee
+    </footer>
+
+    <div class="video-modal" id="videoModal" hidden>
+        <div class="video-modal-content" role="dialog" aria-modal="true" aria-label="Project video">
+            <button class="video-modal-close" type="button" aria-label="Close video">&times;</button>
+            <video id="projectVideo" controls preload="metadata">
+                <source src="assets/Images/project1-vid.mp4" type="video/mp4">
+                Your browser does not support video playback.
+            </video>
+        </div>
+    </div>
+
+    <script src="assets/script.js"></script>
+
+</body>
+</html>

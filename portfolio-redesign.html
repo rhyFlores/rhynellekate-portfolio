@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rhynelle Kate Flores — Frontend Developer</title>
+<meta name="description" content="Frontend developer based in Ozamiz, PH. BSIT grad, PhilNITS-certified, builds cute & careful interfaces.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+<style>
+  :root{
+    --paper:#FAF7F2;
+    --paper2:#F3ECFB;
+    --ink:#2B2640;
+    --ink-soft:#5B5470;
+    --coral:#FF6F59;
+    --periwinkle:#7C83FD;
+    --marigold:#FFC857;
+    --sage:#8FBF9F;
+    --line: rgba(43,38,64,0.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  /* reveal */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 28px; max-width:1080px; margin:0 auto;
+    background:rgba(250,247,242,0.85); backdrop-filter:blur(6px);
+  }
+  .logo{
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.2rem;
+    display:flex; align-items:center; gap:8px; text-decoration:none;
+  }
+  .navlinks{display:flex;gap:24px;font-size:.9rem;color:var(--ink-soft);}
+  .navlinks a{text-decoration:none;}
+  .navlinks a:hover{color:var(--ink);}
+  .hire{
+    background:var(--ink); color:var(--paper); padding:9px 18px;
+    border-radius:99px; font-size:.84rem; text-decoration:none;
+    display:inline-flex; align-items:center; gap:6px;
+    transform:rotate(-1.5deg);
+    box-shadow:3px 3px 0 var(--coral);
+    transition:transform .15s ease;
+  }
+  .hire:hover{transform:rotate(-1.5deg) translate(-2px,-2px);}
+
+  /* HERO */
+  .hero{
+    display:grid; grid-template-columns:1.1fr 1fr; gap:40px;
+    align-items:center; padding:40px 0 70px;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:.82rem; color:var(--ink-soft); margin-bottom:18px;
+    background:var(--paper2); padding:6px 14px; border-radius:99px;
+    transform:rotate(-1deg);
+  }
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:#5EC26A;display:inline-block;}
+  h1.headline{
+    font-family:'Fraunces', serif; font-weight:600;
+    font-size:clamp(2.2rem, 4.6vw, 3.4rem);
+    line-height:1.08; margin:0 0 18px;
+  }
+  h1.headline .script{font-style:italic; font-weight:500; color:var(--coral);}
+  h1.headline .underline{position:relative; display:inline-block;}
+  h1.headline .underline svg{position:absolute; left:0; bottom:-6px; width:100%; height:14px;}
+  .sub{font-size:1.03rem; color:var(--ink-soft); max-width:440px; margin-bottom:26px; line-height:1.6;}
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--ink); color:var(--paper); padding:13px 24px; border-radius:12px;
+    text-decoration:none; font-weight:600; font-size:.94rem;
+    box-shadow:4px 4px 0 var(--periwinkle);
+    transition:transform .15s ease; display:inline-block;
+  }
+  .btn-primary:hover{transform:translate(-2px,-2px);}
+  .btn-ghost{
+    border:1.5px solid var(--ink); color:var(--ink); padding:13px 24px; border-radius:12px;
+    text-decoration:none; font-weight:600; font-size:.94rem;
+  }
+
+  .drawpad-wrap{
+    background:var(--paper2); border-radius:22px; padding:18px;
+    transform:rotate(1.2deg);
+    box-shadow:6px 6px 0 rgba(43,38,64,0.1);
+  }
+  .drawpad-label{
+    font-family:'Space Mono', monospace; font-size:.76rem; color:var(--ink-soft);
+    display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;
+  }
+  .clear-btn{
+    background:var(--paper); border:1px solid var(--line); border-radius:8px;
+    padding:5px 10px; font-family:'Space Mono', monospace; font-size:.7rem;
+    cursor:pointer; color:var(--ink-soft);
+  }
+  .clear-btn:hover{background:var(--coral); color:white; border-color:var(--coral);}
+  #drawCanvasHolder{background:white; border-radius:14px; overflow:hidden; border:1.5px solid var(--line); touch-action:none;}
+  .drawpad-hint{font-size:.76rem; color:var(--ink-soft); text-align:center; margin-top:10px;}
+
+  /* SECTION shared */
+  section{padding:70px 0;}
+  .section-tag{
+    font-family:'Space Mono', monospace; font-size:.78rem; color:var(--coral);
+    text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px; display:block;
+  }
+  h2.section-title{font-family:'Fraunces', serif; font-weight:600; font-size:2rem; margin:0 0 20px;}
+
+  /* ABOUT */
+  .about{display:grid; grid-template-columns:1.1fr .9fr; gap:50px; align-items:start;}
+  .about p{color:var(--ink-soft); line-height:1.7; font-size:1.01rem;}
+  .stat-row{display:flex; gap:12px; margin:22px 0; flex-wrap:wrap;}
+  .stat{
+    background:white; border:1.5px solid var(--ink); border-radius:14px; padding:12px 16px;
+    font-size:.85rem;
+  }
+  .stat b{font-family:'Fraunces', serif; font-size:1.3rem; display:block;}
+  .jar-label{font-family:'Space Mono', monospace; font-size:.75rem; color:var(--ink-soft); margin:22px 0 8px;}
+  .stickers{display:flex; flex-wrap:wrap; gap:9px; margin-bottom:8px;}
+  .sticker{
+    font-family:'Space Mono', monospace; font-size:.8rem; padding:6px 13px;
+    border-radius:99px; border:1.5px solid var(--ink); cursor:default;
+    transition:transform .15s ease;
+  }
+  .sticker:hover{transform:rotate(-4deg) scale(1.06);}
+  .s1{background:var(--coral); color:white; border-color:var(--coral);}
+  .s2{background:var(--periwinkle); color:white; border-color:var(--periwinkle);}
+  .s3{background:var(--marigold); color:var(--ink); border-color:var(--marigold);}
+  .s4{background:white;}
+
+  .polaroid{
+    background:white; padding:14px 14px 42px; border-radius:4px;
+    box-shadow:0 12px 24px rgba(43,38,64,0.12);
+    width:230px;
+  }
+  .polaroid img{width:100%; border-radius:2px; aspect-ratio:1; object-fit:cover; background:var(--paper2);}
+  .polaroid .cap{font-family:'Fraunces', serif; font-style:italic; font-size:.83rem; color:var(--ink-soft); text-align:center; margin-top:10px;}
+  .polaroid-stack{position:relative; display:flex; justify-content:center; padding-top:10px;}
+  .polaroid-stack .polaroid:first-child{transform:rotate(-5deg);}
+  .polaroid-stack .polaroid:last-child{transform:rotate(6deg); position:absolute; top:60px; left:52%; width:170px;}
+
+  /* PROJECTS */
+  .project-grid{display:grid; grid-template-columns:1fr 1fr; gap:26px;}
+  .project-card{
+    background:white; border-radius:18px; overflow:hidden; border:1.5px solid var(--line);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .project-card:hover{transform:translateY(-4px); box-shadow:0 14px 28px rgba(43,38,64,0.1);}
+  .project-card .thumb{aspect-ratio:16/10; overflow:hidden; background:var(--paper2);}
+  .project-card .thumb img{width:100%; height:100%; object-fit:cover;}
+  .project-body{padding:20px 22px 22px;}
+  .project-tag{font-family:'Space Mono', monospace; font-size:.72rem; color:var(--periwinkle);}
+  .project-body h3{font-family:'Fraunces', serif; font-size:1.25rem; margin:6px 0 8px;}
+  .project-body p{color:var(--ink-soft); font-size:.92rem; line-height:1.55; margin:0 0 14px;}
+  .tag-row{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px;}
+  .tag-chip{
+    font-family:'Space Mono', monospace; font-size:.68rem; padding:3px 9px;
+    background:var(--paper2); border-radius:99px; color:var(--ink-soft);
+  }
+  .link-row{display:flex; gap:16px; font-size:.85rem; font-weight:600;}
+  .link-row a{text-decoration:none; border-bottom:1.5px solid var(--coral);}
+  .link-row .disabled{color:var(--ink-soft); border-bottom:1.5px dashed var(--line); font-weight:500;}
+  .featured{grid-column:1/-1;}
+  .featured .thumb{aspect-ratio:21/9;}
+
+  /* EXPERIENCE */
+  .timeline{position:relative; padding-left:32px;}
+  .timeline::before{
+    content:""; position:absolute; left:6px; top:6px; bottom:6px; width:2px;
+    background-image:linear-gradient(var(--ink) 60%, transparent 0%);
+    background-position:left; background-size:2px 10px; background-repeat:repeat-y;
+  }
+  .tl-item{position:relative; margin-bottom:38px;}
+  .tl-item::before{
+    content:""; position:absolute; left:-32px; top:4px; width:12px; height:12px;
+    border-radius:50%; background:var(--coral); border:3px solid var(--paper);
+    box-shadow:0 0 0 2px var(--coral);
+  }
+  .tl-date{font-family:'Space Mono', monospace; font-size:.76rem; color:var(--coral); margin-bottom:4px;}
+  .tl-item h3{font-family:'Fraunces', serif; font-size:1.2rem; margin:0 0 2px;}
+  .tl-item .org{font-size:.88rem; color:var(--ink-soft); margin-bottom:10px;}
+  .tl-item ul{margin:0; padding-left:18px; color:var(--ink-soft); font-size:.92rem; line-height:1.7;}
+  .tl-item ul li{margin-bottom:2px;}
+
+  /* ACHIEVEMENTS */
+  .badge-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px;}
+  .badge-card{
+    background:white; border:1.5px solid var(--line); border-radius:16px; padding:20px;
+    transition:transform .15s ease;
+  }
+  .badge-card:hover{transform:rotate(-1.5deg);}
+  .badge-icon{font-size:1.6rem; margin-bottom:10px; display:inline-block;}
+  .badge-card h4{font-family:'Fraunces', serif; font-size:1rem; margin:0 0 6px; line-height:1.3;}
+  .badge-card p{font-size:.82rem; color:var(--ink-soft); line-height:1.5; margin:0 0 8px;}
+  .badge-date{font-family:'Space Mono', monospace; font-size:.7rem; color:var(--ink-soft);}
+
+  /* CONTACT */
+  .contact{text-align:center; padding:80px 0 60px;}
+  .contact h2{font-family:'Fraunces', serif; font-weight:600; font-size:clamp(1.8rem,4vw,2.6rem); margin:0 0 16px;}
+  .contact p{color:var(--ink-soft); max-width:440px; margin:0 auto 30px; line-height:1.6;}
+  .contact-links{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+
+  footer{
+    text-align:center; padding:30px 0 50px; font-family:'Space Mono', monospace;
+    font-size:.78rem; color:var(--ink-soft);
+  }
+  footer .heart{color:var(--coral);}
+
+  @media (max-width:760px){
+    .hero, .about, .project-grid, .badge-grid{grid-template-columns:1fr;}
+    .navlinks{display:none;}
+    .polaroid-stack{margin-top:16px;}
+    .polaroid-stack .polaroid:last-child{position:static; margin-top:-30px; margin-left:auto; width:150px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#top">
+    <svg width="18" height="18" viewBox="0 0 20 20"><path d="M2 15 Q5 3 10 10 T18 5" stroke="#FF6F59" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+    kate.
+  </a>
+  <div class="navlinks">
+    <a href="#about">about</a>
+    <a href="#work">work</a>
+    <a href="#experience">experience</a>
+    <a href="#achievements">achievements</a>
+  </div>
+  <a class="hire" href="https://mail.google.com/mail/?view=cm&to=rhynellekate22@gmail.com&su=Let's+Work+Together">say hi →</a>
+</nav>
+
+<div class="wrap" id="top">
+  <section class="hero">
+    <div class="reveal">
+      <div class="eyebrow"><span class="dot"></span> open to frontend roles · ozamiz city, ph</div>
+      <h1 class="headline">
+        hi, i'm kate.<br>
+        i build <span class="script">interfaces</span><br>
+        <span class="underline">with a big heart
+          <svg viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M2 10 Q40 2 80 9 T160 6 T198 10" stroke="#7C83FD" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+        </span>.
+      </h1>
+      <p class="sub">Frontend dev &amp; BSIT grad from La Salle University–Ozamiz. I like clean code, tiny details, and interfaces that feel like someone actually made them. Go on, draw me something →</p>
+      <div class="cta-row">
+        <a class="btn-primary" href="#work">see my work</a>
+        <a class="btn-ghost" href="assets/RhynelleFlores_Resume.pdf">download resume</a>
+      </div>
+    </div>
+
+    <div class="drawpad-wrap reveal">
+      <div class="drawpad-label">
+        <span>✎ draw something for me</span>
+        <button class="clear-btn" id="clearBtn">clear</button>
+      </div>
+      <div id="drawCanvasHolder">
+        <canvas id="drawCanvas" width="440" height="300"></canvas>
+      </div>
+      <div class="drawpad-hint">it's just for fun — nothing is saved 🌸</div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="reveal">
+      <span class="section-tag">about me</span>
+      <h2 class="section-title">a dev who sketches before she codes</h2>
+      <p>I got into frontend because I liked making things people actually enjoy using, not just things that work. During my internship at ASV Business Solution, I built the annotation canvas for Cirqapture — the same kind of drawing tool you just played with — wired up a livestock dashboard for Farmyra, and helped restructure NoDiy into a proper monorepo.</p>
+      <p style="margin-top:14px;">I'm PhilNITS-certified, a two-time regional HackForGov CTF participant, and always down to prototype something on a Friday night.</p>
+
+      <div class="stat-row">
+        <div class="stat"><b>3 mo</b>internship</div>
+        <div class="stat"><b>5</b>projects shipped</div>
+        <div class="stat"><b>2×</b>CTF finalist</div>
+      </div>
+
+      <div class="jar-label">// frontend</div>
+      <div class="stickers">
+        <span class="sticker s1">React</span>
+        <span class="sticker s2">Angular</span>
+        <span class="sticker s3">TypeScript</span>
+        <span class="sticker s4">Tailwind CSS</span>
+        <span class="sticker s1">Fabric.js</span>
+        <span class="sticker s2">GSAP</span>
+      </div>
+      <div class="jar-label">// backend &amp; data</div>
+      <div class="stickers">
+        <span class="sticker s3">NestJS</span>
+        <span class="sticker s4">Laravel</span>
+        <span class="sticker s1">MongoDB</span>
+        <span class="sticker s2">MySQL</span>
+        <span class="sticker s3">REST APIs</span>
+      </div>
+      <div class="jar-label">// tools</div>
+      <div class="stickers">
+        <span class="sticker s4">Git</span>
+        <span class="sticker s1">GitHub Actions</span>
+        <span class="sticker s2">AWS S3</span>
+        <span class="sticker s3">Figma</span>
+        <span class="sticker s4">Power BI</span>
+      </div>
+    </div>
+    <div class="polaroid-stack reveal">
+      <div class="polaroid">
+        <img src="https://rhyflores.github.io/rhynelle-portfolio/assets/Images/profile.jpg" alt="Kate">
+        <div class="cap">that's me!</div>
+      </div>
+      <div class="polaroid">
+        <img src="https://rhyflores.github.io/rhynelle-portfolio/assets/Images/about3.jpg" alt="Kate at Hack4Gov">
+        <div class="cap">HackForGov</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <span class="section-tag reveal">selected work</span>
+    <h2 class="section-title reveal">things i've built</h2>
+    <div class="project-grid">
+
+      <div class="project-card featured reveal">
+        <div class="thumb"><img src="https://rhyflores.github.io/rhynelle-portfolio/assets/Images/project1.jpg" alt="Ramil's Creation EMS"></div>
+        <div class="project-body">
+          <span class="project-tag">featured · capstone project</span>
+          <h3>Ramil's Creation EMS</h3>
+          <p>An events management web app — I led all frontend work with React and Tailwind CSS, with Laravel powering the backend API. Built with a 3-person team.</p>
+          <div class="tag-row">
+            <span class="tag-chip">React</span><span class="tag-chip">Laravel</span><span class="tag-chip">TypeScript</span><span class="tag-chip">Tailwind</span><span class="tag-chip">MySQL</span>
+          </div>
+          <div class="link-row">
+            <a href="https://github.com/rhyFlores/Ramil-s-Creation-EMS" target="_blank">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="thumb"><img src="https://rhyflores.github.io/rhynelle-portfolio/assets/Images/cirq1.png" alt="Cirqapture annotation system"></div>
+        <div class="project-body">
+          <span class="project-tag">internship · ASV Business Solution</span>
+          <h3>Cirqapture Annotation System</h3>
+          <p>A screen-capture and annotation Chrome extension. I built the Fabric.js canvas integration, SVG export, PDF generation, and a real-time collaborator sharing workflow.</p>
+          <div class="tag-row">
+            <span class="tag-chip">Fabric.js</span><span class="tag-chip">Angular</span><span class="tag-chip">SVG</span><span class="tag-chip">PDF export</span>
+          </div>
+          <div class="link-row">
+            <span class="disabled">Private repo — internal ASV product</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="thumb"><img src="https://rhyflores.github.io/rhynelle-portfolio/assets/Images/katha1.png" alt="Katha Studio website"></div>
+        <div class="project-body">
+          <span class="project-tag">client work</span>
+          <h3>Katha Studio Website</h3>
+          <p>A clean, responsive studio landing page designed and built end-to-end for a real client — strong visual hierarchy, modern interactions, deployed on Netlify.</p>
+          <div class="tag-row">
+            <span class="tag-chip">HTML</span><span class="tag-chip">CSS</span><span class="tag-chip">JavaScript</span><span class="tag-chip">Responsive</span>
+          </div>
+          <div class="link-row">
+            <a href="https://kathastudios.netlify.app/" target="_blank">Live site ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="thumb"><img src="https://rhyflores.github.io/rhynelle-portfolio/assets/Images/project2.jpg" alt="Valorant fan website"></div>
+        <div class="project-body">
+          <span class="project-tag">personal project</span>
+          <h3>Valorant Fan Website</h3>
+          <p>An interactive fan site with agent profiles and game data — an early, hands-on lesson in UI composition and JSON data handling with vanilla JS.</p>
+          <div class="tag-row">
+            <span class="tag-chip">HTML</span><span class="tag-chip">CSS</span><span class="tag-chip">JavaScript</span><span class="tag-chip">JSON</span>
+          </div>
+          <div class="link-row">
+            <a href="https://github.com/rhyFlores/valorant" target="_blank">GitHub ↗</a>
+            <a href="https://rhyflores.github.io/valorant/" target="_blank">Live ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="thumb"><img src="https://rhyflores.github.io/rhynelle-portfolio/assets/Images/project3.jpg" alt="Booker POS system"></div>
+        <div class="project-body">
+          <span class="project-tag">personal project</span>
+          <h3>Booker POS System</h3>
+          <p>A point-of-sale system with inventory tracking and sales processing — full-stack fundamentals built with plain PHP, MySQL, HTML, CSS, and JavaScript.</p>
+          <div class="tag-row">
+            <span class="tag-chip">PHP</span><span class="tag-chip">MySQL</span><span class="tag-chip">HTML</span><span class="tag-chip">CSS</span>
+          </div>
+          <div class="link-row">
+            <a href="https://github.com/rhyFlores/POS_Project" target="_blank">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="experience">
+    <span class="section-tag reveal">where i've worked</span>
+    <h2 class="section-title reveal">experience</h2>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-date">Feb 2026 — May 2026</div>
+        <h3>Web Developer Intern</h3>
+        <div class="org">ASV Business Solution · Mandaue City, Cebu</div>
+        <ul>
+          <li>Contributed to Cirqapture, a screen-capture and workflow documentation platform</li>
+          <li>Built interactive canvas features using Fabric.js for annotation and markup</li>
+          <li>Developed frontend components with React, Angular, TypeScript, and Tailwind CSS</li>
+          <li>Set up GitHub Actions CI/CD pipelines for automated build and deployment</li>
+          <li>Built PDF generation features using pdf-lib and html2canvas</li>
+        </ul>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">Aug 2024 — May 2025</div>
+        <h3>Frontend Developer (Capstone)</h3>
+        <div class="org">La Salle University – Ozamiz · Academic Project</div>
+        <ul>
+          <li>Led all frontend development on Ramil's Creation EMS, a full-stack events management app</li>
+          <li>Built a responsive UI with React and Tailwind CSS for event bookings, client records, and scheduling</li>
+          <li>Integrated with a Laravel REST API and MySQL as part of a 3-person team</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="achievements">
+    <span class="section-tag reveal">certifications &amp; recognition</span>
+    <h2 class="section-title reveal">achievements</h2>
+    <div class="badge-grid">
+      <div class="badge-card reveal">
+        <span class="badge-icon">🎓</span>
+        <h4>PhilNITS IP Exam Passer</h4>
+        <p>Internationally recognized IT certification covering core IT concepts, systems, networks, databases, and information security.</p>
+        <div class="badge-date">October 2025</div>
+      </div>
+      <div class="badge-card reveal">
+        <span class="badge-icon">🚩</span>
+        <h4>HackForGov CTF — Top 6 &amp; Top 5</h4>
+        <p>DICT Region 10 Capture-The-Flag competition, Iligan City &amp; Cagayan de Oro City.</p>
+        <div class="badge-date">Aug 2024 &amp; Nov 2025</div>
+      </div>
+      <div class="badge-card reveal">
+        <span class="badge-icon">✏️</span>
+        <h4>UI/UX Design Webinar</h4>
+        <p>Usability testing and user-centered design, with Ms. Lucy Mae Tan.</p>
+        <div class="badge-date">September 2025</div>
+      </div>
+      <div class="badge-card reveal">
+        <span class="badge-icon">🌿</span>
+        <h4>Git Version Control Webinar</h4>
+        <p>Branching and collaborative workflows, with Mr. Zyndly Kent Baja.</p>
+        <div class="badge-date">September 2025</div>
+      </div>
+      <div class="badge-card reveal">
+        <span class="badge-icon">☁️</span>
+        <h4>AWS Cloud Hybrid Webinar</h4>
+        <p>AWS services and scalable web architecture, with Ms. Darla David.</p>
+        <div class="badge-date">October 2025</div>
+      </div>
+      <div class="badge-card reveal">
+        <span class="badge-icon">📊</span>
+        <h4>Data Analytics — Power BI</h4>
+        <p>Data visualization fundamentals, with Mr. Bonnie Jefferson Padilla.</p>
+        <div class="badge-date">May 2025</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact reveal">
+    <span class="section-tag">let's talk</span>
+    <h2>let's build something<br>great together.</h2>
+    <p>I'm actively looking for frontend developer roles. If you've got a project, a team, or just want to say hi — my inbox is open.</p>
+    <div class="contact-links">
+      <a class="sticker s1" href="https://mail.google.com/mail/?view=cm&to=rhynellekate22@gmail.com&su=Let's+Work+Together" target="_blank">email ↗</a>
+      <a class="sticker s2" href="https://github.com/rhyFlores" target="_blank">github ↗</a>
+      <a class="sticker s3" href="https://www.linkedin.com/in/rhynelle-kate-flores-5b20a32b4/" target="_blank">linkedin ↗</a>
+      <a class="sticker s4" href="assets/RhynelleFlores_Resume.pdf" target="_blank">resume ↗</a>
+    </div>
+  </section>
+</div>
+
+<footer>
+  © Rhynelle Kate Flores — built with <span class="heart">♥</span> and a little too much iced coffee
+</footer>
+
+<script>
+  // draw pad
+  const canvas = new fabric.Canvas('drawCanvas', { isDrawingMode: true, backgroundColor: '#ffffff' });
+  canvas.freeDrawingBrush.width = 4;
+  canvas.freeDrawingBrush.color = '#7C83FD';
+  const colors = ['#7C83FD','#FF6F59','#FFC857','#2B2640'];
+  let colorIndex = 0;
+  canvas.on('path:created', () => {
+    colorIndex = (colorIndex + 1) % colors.length;
+    canvas.freeDrawingBrush.color = colors[colorIndex];
+  });
+  document.getElementById('clearBtn').addEventListener('click', () => {
+    canvas.clear(); canvas.backgroundColor = '#ffffff'; canvas.renderAll();
+  });
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
