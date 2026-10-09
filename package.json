@@ -1,0 +1,24 @@
+{
+  "name": "rhynelleportfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests/seo.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rhyFlores/rhynellekate-portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/rhyFlores/rhynellekate-portfolio/issues"
+  },
+  "homepage": "https://github.com/rhyFlores/rhynellekate-portfolio#readme",
+  "devDependencies": {
+    "jsdom": "^30.1.1"
+  }
+}
