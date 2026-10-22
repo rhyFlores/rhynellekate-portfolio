@@ -1,28 +1,16 @@
-function initializeDrawingPad() {
-  const canvasElement = document.getElementById("drawCanvas");
-  const clearButton = document.getElementById("clearBtn");
-
-  if (!canvasElement || !clearButton || !window.fabric) return;
-
-  const canvas = new fabric.Canvas(canvasElement, {
-    isDrawingMode: true,
-    backgroundColor: "#ffffff",
-  });
+// draw pad
+  const canvas = new fabric.Canvas('drawCanvas', { isDrawingMode: true, backgroundColor: '#ffffff' });
   canvas.freeDrawingBrush.width = 4;
-  canvas.freeDrawingBrush.color = "#7C83FD";
-  const colors = ["#7C83FD", "#FF6F59", "#FFC857", "#2B2640"];
+  canvas.freeDrawingBrush.color = '#7C83FD';
+  const colors = ['#7C83FD','#FF6F59','#FFC857','#2B2640'];
   let colorIndex = 0;
-
-  canvas.on("path:created", () => {
+  canvas.on('path:created', () => {
     colorIndex = (colorIndex + 1) % colors.length;
     canvas.freeDrawingBrush.color = colors[colorIndex];
   });
-  clearButton.addEventListener("click", () => {
-    canvas.clear();
-    canvas.backgroundColor = "#ffffff";
-    canvas.renderAll();
+  document.getElementById('clearBtn').addEventListener('click', () => {
+    canvas.clear(); canvas.backgroundColor = '#ffffff'; canvas.renderAll();
   });
-}
 
 // scroll reveal
 const revealEls = document.querySelectorAll(".reveal");
@@ -83,5 +71,4 @@ function initializeVideoModal() {
   });
 }
 
-initializeDrawingPad();
 initializeVideoModal();
